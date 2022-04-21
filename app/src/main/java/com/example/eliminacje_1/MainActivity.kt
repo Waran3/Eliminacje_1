@@ -18,10 +18,12 @@ import com.example.eliminacje_1.ui.theme.Eliminacje_1Theme
 import kotlin.math.roundToInt
 
 
-var zawodnik_1: Int = 0
-var zawodnik_2: Int = 0
-var zawodnik_3: Int = 0
-var zawodnik_4: Int = 0
+private val zawodnik_1 = mutableStateOf(0)
+private val zawodnik_2 = mutableStateOf(0)
+private val zawodnik_3 = mutableStateOf(0)
+private val zawodnik_4 = mutableStateOf(0)
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +46,8 @@ class MainActivity : ComponentActivity() {
                     )
                     {
 
-                        MainContent()
-                        MainContent_2()
+                        Slidery_gorne()
+                        Slidery_dolne()
                         //MainContent_3()
 
                         Column(
@@ -62,30 +64,30 @@ class MainActivity : ComponentActivity() {
                         }
 
                         Text(
-                            text = " zawodnik 1 = $zawodnik_1",
+                            text = " zawodnik 1 = ${zawodnik_1.value}",
                             fontWeight = FontWeight.Bold,
                             fontStyle = FontStyle(1),
                             style = MaterialTheme.typography.h5,
                         )
                         Text(
-                            text = " zawodnik 2 = $zawodnik_2",
+                            text = " zawodnik 2 = ${zawodnik_2.value}",
                             fontWeight = FontWeight.Bold,
                             fontStyle = FontStyle(1),
                             style = MaterialTheme.typography.h5,
                         )
                         Text(
-                            text = " zawodnik 3 = $zawodnik_3",
+                            text = " zawodnik 3 = ${zawodnik_3.value}",
                             fontWeight = FontWeight.Bold,
                             fontStyle = FontStyle(1),
                             style = MaterialTheme.typography.h5,
                         )
                         Text(
-                            text = " zawodnik 4 = $zawodnik_4",
+                            text = " zawodnik 4 = ${zawodnik_4.value}",
                             fontWeight = FontWeight.Bold,
                             fontStyle = FontStyle(1),
                             style = MaterialTheme.typography.h5,
                         )
-                        Przycisk()
+                        Przycisk_zapisz()
                     }
 
                 }
@@ -96,7 +98,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun MainContent(): Int  {
+fun Slidery_gorne()  {
     var sliderPosition_1 by remember { mutableStateOf(0F) }
     var sliderPosition_2 by remember { mutableStateOf(0F) }
     var sliderPosition_3 by remember { mutableStateOf(0F) }
@@ -115,8 +117,8 @@ fun MainContent(): Int  {
     var wynik_6 = (sliderPosition_6 * 33).roundToInt()
     var suma_3 = wynik_4 + wynik_5 + wynik_6
 
-    zawodnik_2 = suma_2
-    zawodnik_3 = suma_3
+    zawodnik_2.value = suma_2
+    zawodnik_3.value = suma_3
 
     Row(
         modifier = Modifier
@@ -264,13 +266,13 @@ fun MainContent(): Int  {
             }
         }
     }
-    return zawodnik_2
+    //return zawodnik_2
     //return zawodnik_3
 }
 
 
 @Composable
-fun MainContent_2(): Int {
+fun Slidery_dolne() {
     var sliderPosition_1 by remember { mutableStateOf(0F) }
     var sliderPosition_2 by remember { mutableStateOf(0F) }
     var sliderPosition_3 by remember { mutableStateOf(0F) }
@@ -289,8 +291,8 @@ fun MainContent_2(): Int {
     var wynik_6 = (sliderPosition_6 * 33).roundToInt()
     var suma_4 = wynik_4 + wynik_5 + wynik_6
 
-    zawodnik_1 = suma_1
-    zawodnik_4 = suma_4
+    zawodnik_1.value = suma_1
+    zawodnik_4.value = suma_4
 
     Row(
         modifier = Modifier
@@ -436,12 +438,12 @@ fun MainContent_2(): Int {
         }
     }
 
-    return zawodnik_1
+    //return zawodnik_1
     //return zawodnik_4
 }
 
 @Composable
-fun Przycisk() {
+fun Przycisk_zapisz() {
     val counter = remember { mutableStateOf(0) }
 
     Column(
